@@ -7,21 +7,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { themeSwitcher } from '../../../redux/feature/themeSlice';
 const Header = (): JSX.Element => {
-    const [themes, setthemes] = useState(true)
+    const currentTheme = useSelector((state: RootState) => state.theme);
+    const [themes, setthemes] = useState(() => currentTheme?.value == 'light')
+
     const router = useRouter();
     const dispatch = useDispatch()
     const handleToggle = (e: any) => {
-        setthemes(e.target.checked)
-    }
-
-    useEffect(() => {
-        if (themes) {
+        if (e.target.checked) {
             dispatch(themeSwitcher({ value: 'light' }))
         } else {
             dispatch(themeSwitcher({ value: 'dark' }))
         }
-    }, [themes])
-
+        setthemes(e.target.checked)
+    }
 
     return (
         <div className='flex flex-1 justify-between items-baseline'>
