@@ -7,7 +7,7 @@ interface Props {
 
 const Layout = ({ children }: Props): JSX.Element => {
     return (
-        <div className="dark:bg-gray-800">
+        <div className="dark:bg-gray-800" style={{ transition: "background .3s" }}>
             <div className='w-[42rem] max-w-full mx-auto py-10 px-5 md:px-0 min-h-screen '>
                 <Header />
                 {children}
