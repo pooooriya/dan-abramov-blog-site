@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+body {
+    transition: background .3s;
+}
+
 .react-toggle-track {
     background-color: #0f1114 !important;
 }
