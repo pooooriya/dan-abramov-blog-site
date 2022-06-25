@@ -9,7 +9,6 @@ interface PageProp {
 }
 
 const Post: NextPage<PageProp> = ({ Post }): JSX.Element => {
-    console.log(Post);
     return (
         <Layout>
             <h1 className="text-3xl font-extrabold mt-14 dark:text-white">{Post.title}</h1>
