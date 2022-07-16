@@ -1,8 +1,9 @@
 import React from 'react'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Layout from '../../components/Layout';
 import Bio from '../../components/Bio';
 import Link from 'next/link';
+import { API_HOST_URL } from '../../config';
 
 interface PageProp {
     Post: PostType
@@ -25,14 +26,14 @@ const Post: NextPage<PageProp> = ({ Post }): JSX.Element => {
 export default Post
 
 export async function getStaticPaths() {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts`)
+    const response = await fetch(`${API_HOST_URL}/api/blog/posts`)
     const posts: PostType[] = await response.json();
     const paths = posts.map((post) => { return { params: { id: `${post.id}` } } });
     return { paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/` + params?.id)
+    const response = await fetch(`${API_HOST_URL}/api/blog/post/` + params?.id)
     const post: PostType[] = await response.json();
     return { props: { Post: post || null } }
 }
