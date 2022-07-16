@@ -3,9 +3,9 @@ import React from 'react'
 
 interface Props {
     headline: string
-    datail: string
+    datail: Date
     description: string,
-    id: number,
+    id: string,
     time:number
 }
 
